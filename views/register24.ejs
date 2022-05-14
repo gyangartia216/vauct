@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="/iofrm-style.css">
+    <link rel="stylesheet" type="text/css" href="/iofrm-theme28.css">
+</head>
+<body>
+    <div class="form-body">
+        <div class="website-logo">
+            <a href="index.ejs">
+                <div class="logo">
+                    <img class="logo-size" src="images/img1.jpg" alt="">
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder">
+
+                </div>
+            </div>
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Get more things done with <a href="/home"><u>VAUCT</u></a></h3>
+                        <p>Access to the most powerfull tool in the entire auction industry.</p>
+                        <div class="page-links">
+                            <a href="/login">Login</a><a href="/register" class="active">Register</a>
+                        </div>
+                        <form action="/signup" onsubmit="return validate()" method="post" >
+                            <input class="form-control" type="text" name="name" placeholder="Full Name" required>
+                            <input class="form-control" type="email" name="email" placeholder="E-mail Address" required>
+                            <input class="form-control" type="password" id="password" name="password" placeholder="Password" required>
+                            <span></span>
+                            <div class="form-button">
+                                <button id="submit" type="submit" class="ibtn">Register</button>
+                            </div>
+                        </form>
+                        <div class="other-links">
+                            <span>Or register with</span><a href="#">Google</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="javascripts/jquery.min.js"></script>
+<script src="javascripts/popper.min.js"></script>
+<script src="javascripts/bootstrap.min.js"></script>
+<script src="javascripts/main.js"></script>
+<script src="javascripts/app.js"></script>
+<script>
+    var span = document.getElementsByTagName('span');
+    var myInput = document.getElementById("password");
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    var special = document.getElementById("special");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
+
+    myInput.onkeydown = function()
+    {
+      var lowerCaseLetters = /[a-z]/g;
+      var upperCaseLetters = /[A-Z]/g;
+      var numbers = /[0-9]/g;
+      var specials =  /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+      if(!myInput.value.match(lowerCaseLetters)) 
+      {  
+        span[0].innerText="missing lowerCaseLetters";
+        span[0].style.color="red";
+      }
+      else if(!myInput.value.match(upperCaseLetters)) 
+      {  
+        span[0].innerText="missing upperCaseLetters";
+        span[0].style.color="red";
+      }
+      else if(!myInput.value.match(numbers)) 
+      {  
+        span[0].innerText="missing number";
+        span[0].style.color="red";
+      }
+      else if(myInput.value.length < 8) 
+      {
+        span[0].innerText="short password";
+        span[0].style.color="red";
+      }
+      else if(!myInput.value.match(specials))
+      {
+        span[0].innerText="missing special character";
+        span[0].style.color="red";
+      }
+      else
+      {
+       // span[0].innerText="Valid Password!!";
+      //  span[0].style.color="green";
+      span[0].innerText="";
+      }
+    }
+
+    function validate()
+   {
+      var lowerCaseLetters = /[a-z]/g;
+      var upperCaseLetters = /[A-Z]/g;
+      var numbers = /[0-9]/g;
+      var specials =  /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+      if(!myInput.value.match(lowerCaseLetters)) 
+      {  
+        span[0].innerText="missing lowerCaseLetters";
+        span[0].style.color="red";
+        return false;
+      }
+      else if(!myInput.value.match(upperCaseLetters)) 
+      {  
+        span[0].innerText="missing upperCaseLetters";
+        span[0].style.color="red";
+        return false;
+      }
+      else if(!myInput.value.match(numbers)) 
+      {  
+        span[0].innerText="missing number";
+        span[0].style.color="red";
+        return false;
+      }
+      else if(myInput.value.length < 8) 
+      {
+        span[0].innerText="short password";
+        span[0].style.color="red";
+        return false;
+      }
+      else if(!myInput.value.match(specials))
+      {
+        span[0].innerText="missing special character";
+        span[0].style.color="red";
+        return false;
+      }
+    //   else
+    //   {
+    //     span[0].innerText="Valid Password!!";
+    //     span[0].style.color="green";
+    //   }
+   }
+</script>
+</body>
+</html>

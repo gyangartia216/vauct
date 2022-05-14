@@ -65,7 +65,7 @@ var connection=mysql.createConnection(
     {
         host:'localhost',
         user:'root',
-        password:'gyan05',
+        password:'root',
         database:'vauct'
     });
  
@@ -74,7 +74,7 @@ var connection=mysql.createConnection(
         if(!err)
             console.log('DB Connected...');
         else
-            console.log('Error');
+            console.log('Error: DB not connected');
     })
 
 // ******************************//
@@ -128,6 +128,22 @@ app.use(session({
       res.render("contact.ejs");
     });
 
+    app.get("/ans", (req, res) =>{
+        res.render("ans.ejs");
+      });
+
+      app.get("/auction", (req, res) =>{
+        res.render("auction.ejs");
+      });
+
+
+      app.get("/forum", (req, res) =>{
+        res.render("chat.ejs");
+      });
+
+      app.get("/sell", (req, res) =>{
+        res.render("sell.ejs");
+      });
     //  app.get('/home',(req,res)=> {
     //     res.sendFile(__dirname +'index.ejs');
     //     //res.sendFile("/index.html");
@@ -136,7 +152,7 @@ app.use(session({
 
 
 
-    app.post('signup',(req,res)=>
+    app.post('/signup',(req,res)=>
     {
         const name = req.body.name;
         const email = req.body.email;
@@ -192,12 +208,12 @@ app.post('/signin', (req, res) =>
                     if(response){
                         req.session.user = result[0].name;
                        // localStorage.setItem(req.session.user, result[0].name);
-                        sessionStorage.setItem(req.session.user, result[0].name);
-                        sessionStorage.setItem(req.session.loggedin, true);
-                        essionStorage.setItem(req.session.email, email);
-                        console.log("Hiii "+ req.session.user);
+                        // sessionStorage.setItem(req.session.user, result[0].name);
+                        // sessionStorage.setItem(req.session.loggedin, true);
+                        // essionStorage.setItem(req.session.email, email);
+                        console.log("Hiii " + req.session.user);
                         console.log(result);
-                        onsole.log(req.session.loggedin);
+                        console.log(req.session.loggedin);
                         console.log("Logged in successfully!!");
                         //req.session.loggedin=true;
                     //     let user={
@@ -213,7 +229,7 @@ app.post('/signin', (req, res) =>
                          
                         //  req.session.user = result[0].name;
                          req.session.email = email;
-                         //res.redirect('/#login=true');		
+                         res.redirect('/#login=true');		
 
                          
                     }
